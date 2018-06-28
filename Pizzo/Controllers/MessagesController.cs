@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
+using System;
+using System.Linq;
 
 namespace Pizzo
 {
@@ -41,6 +43,23 @@ namespace Pizzo
                 // Handle conversation state changes, like members being added and removed
                 // Use Activity.MembersAdded and Activity.MembersRemoved and Activity.Action for info
                 // Not available in all channels
+
+                IConversationUpdateActivity update  = message;
+                var client = new ConnectorClient(new Uri(message.ServiceUrl));
+                if (update.MembersAdded != null && update.MembersAdded.Any())
+                {
+                    foreach (var newMember in update.MembersAdded)
+                    {
+                        if (newMember.Id != message.Recipient.Id)
+                        {
+                            var reply = message.CreateReply();
+                            reply.Text = "Welcome pizza lover!" +
+                                " In mood for a tasty pizza?";
+
+                            client.Conversations.ReplyToActivityAsync(reply);
+                        }
+                    }
+                }
             }
             else if (messageType == ActivityTypes.ContactRelationUpdate)
             {
