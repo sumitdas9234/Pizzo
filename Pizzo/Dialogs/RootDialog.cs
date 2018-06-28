@@ -17,8 +17,7 @@ namespace Pizzo.Dialogs
 
         public async Task PlaceOrder(IDialogContext context, IAwaitable<object> result)
         {
-
-           // context.Wait(PlaceOrder);
+         
         }
     }
 }

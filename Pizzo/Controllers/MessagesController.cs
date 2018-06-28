@@ -65,7 +65,7 @@ namespace Pizzo
                             var attachment = Cards.DynamicCardTemplates.getHeroCard(title, subtitle, text, imageUrl, button);
                             reply.Attachments.Add(attachment);
                             reply.Text = "Welcome pizza lover!" +
-                                " In mood for a tasty pizza?" ;
+                                " In mood for a tasty pizza? Type \"Hi\" to continue" ;
                             
 
                             client.Conversations.ReplyToActivityAsync(reply);
