@@ -12,8 +12,6 @@ namespace Pizzo.Cards
 {
     public class DynamicCardTemplates
     {
-        public class Card
-        {
             /// <summary>
             /// Boiler Plate for the HeroCard in the bot
             /// </summary>
@@ -35,6 +33,4 @@ namespace Pizzo.Cards
                 return heroCard.ToAttachment();
             }
         }
-    }
-
     }
