@@ -10,22 +10,31 @@ namespace Pizzo.Dialogs
     {
         public Task StartAsync(IDialogContext context)
         {
-            context.Wait(MessageReceivedAsync);
-
+            context.Wait(ShowWelcomeBanner);
             return Task.CompletedTask;
         }
 
-        private async Task MessageReceivedAsync(IDialogContext context, IAwaitable<object> result)
+        private async Task ShowWelcomeBanner(IDialogContext context, IAwaitable<object> result)
         {
-            var activity = await result as Activity;
 
-            // Calculate something for us to return
-            int length = (activity.Text ?? string.Empty).Length;
+            //create the static context for card
+            string title = "Welcome to Gusto Pizza";
+            string subtitle = "Address, Gusto Pizza, Bangalore";
+            string text = "Thanks for choosing Gusto Pizza. Help yourself with some tasty pizza!";
+            string imageUrl = "https://image.freepik.com/free-vector/flat-design-pizza-background_23-2147640743.jpg";
+            CardAction button = new CardAction(ActionTypes.OpenUrl, "Locate US", value: "http://restaurants.pizzahut.co.in/");
 
-            // Return our reply to the user
-            await context.PostAsync($"You sent {activity.Text} which was {length} characters");
 
-            context.Wait(MessageReceivedAsync);
+            //show the default welcome card
+            var message = context.MakeMessage();
+            //call the static getHeroCard() method
+            var attachment = Card.getHeroCard(title, subtitle, text, imageUrl, button);
+            //attach the card
+            message.Attachments.Add(attachment);
+            //wait for the message
+            await context.PostAsync(message);
+            //reply back the Banner
+            context.Wait(ShowWelcomeBanner);
         }
     }
 }
