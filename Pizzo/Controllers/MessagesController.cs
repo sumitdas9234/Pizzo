@@ -19,7 +19,6 @@ namespace Pizzo
         public async Task<HttpResponseMessage> Post([FromBody]Activity activity)
         {
             Dialogs.RootDialog rd = new Dialogs.RootDialog();
-
             if (activity.GetActivityType() == ActivityTypes.Message)
             {
                 await Conversation.SendAsync(activity, () => new Dialogs.RootDialog());
@@ -53,6 +52,8 @@ namespace Pizzo
                 string imageUrl = "https://image.freepik.com/free-vector/flat-design-pizza-background_23-2147640743.jpg";
                 CardAction button = new CardAction(ActionTypes.OpenUrl, "Locate US", value: "http://restaurants.pizzahut.co.in/");
 
+
+                IConversationUpdateActivity update  = message;
                 IConversationUpdateActivity update = message;
                 var client = new ConnectorClient(new Uri(message.ServiceUrl));
                 if (update.MembersAdded != null && update.MembersAdded.Any())
@@ -64,10 +65,7 @@ namespace Pizzo
                             var reply = message.CreateReply();
                             var attachment = Cards.DynamicCardTemplates.getHeroCard(title, subtitle, text, imageUrl, button);
                             reply.Attachments.Add(attachment);
-                            reply.Text = "Welcome pizza lover!" +
-                                " In mood for a tasty pizza? Type \"Hi\" to continue";
-
-
+                            reply.Text = "Welcome pizza lover!" + " In mood for a tasty pizza? Type \"Hi\" to continue";
                             client.Conversations.ReplyToActivityAsync(reply);
                         }
                     }
