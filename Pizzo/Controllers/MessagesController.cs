@@ -5,83 +5,48 @@ using System.Web.Http;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
 
-namespace Pizzo
+namespace Pizzo.Dialogs
 {
-    [BotAuthentication]
-    public class MessagesController : ApiController
+    [Serializable]
+    public class RootDialog : IDialog<object>
     {
-        /// <summary>
-        /// POST: api/Messages
-        /// Receive a message from a user and reply to it
-        /// </summary>
-        public async Task<HttpResponseMessage> Post([FromBody]Activity activity)
+        public Task StartAsync(IDialogContext context)
         {
-            if (activity.GetActivityType() == ActivityTypes.Message)
-            {
-                await Conversation.SendAsync(activity, () => new Dialogs.RootDialog());
-            }
-            else
-            {
-                HandleSystemMessage(activity);
-            }
-            var response = Request.CreateResponse(HttpStatusCode.OK);
-            return response;
+            context.Wait(PizzaOptions);
+            return Task.CompletedTask;
         }
 
-        private Activity HandleSystemMessage(Activity message)
+        public async Task PizzaOptions(IDialogContext context, IAwaitable<object> result)
         {
-            string messageType = message.GetActivityType();
-            if (messageType == ActivityTypes.DeleteUserData)
-            {
-                // Implement user deletion here
-                // If we handle user deletion, return a real message
-            }
-            else if (messageType == ActivityTypes.ConversationUpdate)
-            {
-                // Handle conversation state changes, like members being added and removed
-                // Use Activity.MembersAdded and Activity.MembersRemoved and Activity.Action for info
-                // Not available in all channels
-                //create the static context for card
-                string title = "Welcome to Gusto Pizza";
-                string subtitle = "Address, Gusto Pizza, Bangalore";
-                string text = "Thanks for choosing Gusto Pizza. Help yourself with some tasty pizza!";
-                string imageUrl = "https://image.freepik.com/free-vector/flat-design-pizza-background_23-2147640743.jpg";
-                CardAction button = new CardAction(ActionTypes.OpenUrl, "Locate US", value: "http://restaurants.pizzahut.co.in/");
 
-                IConversationUpdateActivity update = message;
-                var client = new ConnectorClient(new Uri(message.ServiceUrl));
-                if (update.MembersAdded != null && update.MembersAdded.Any())
-                {
-                    foreach (var newMember in update.MembersAdded)
-                    {
-                        if (newMember.Id != message.Recipient.Id)
-                        {
-                            var reply = message.CreateReply();
-                            var attachment = Cards.DynamicCardTemplates.getHeroCard(title, subtitle, text, imageUrl, button);
-                            reply.Attachments.Add(attachment);
-                            reply.Text = "Welcome pizza lover!" +
-                                " In mood for a tasty pizza? Type \"Hi\" to continue";
+            var message = context.MakeMessage();
 
+            //setting the layout of the attachments to carousel type
+            message.AttachmentLayout = AttachmentLayoutTypes.Carousel;
 
-                            client.Conversations.ReplyToActivityAsync(reply);
-                        }
-                    }
-                }
-            }
-            else if (messageType == ActivityTypes.ContactRelationUpdate)
-            {
-                // Handle add/remove from contact lists
-                // Activity.From + Activity.Action represent what happened
-            }
-            else if (messageType == ActivityTypes.Typing)
-            {
-                // Handle knowing that the user is typing
-            }
-            else if (messageType == ActivityTypes.Ping)
-            {
-            }
+            //creating a list of message attachments which will be shown in carousel layout
+            message.Attachments = new List<Attachment>();
 
-            return null;
+            //creating hero cards showing pizza options
+            var attachment1 = Cards.DynamicCardTemplates.getHeroCard("Cheese Margherita", "", "", "https://www.google.co.in/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&ved=2ahUKEwiU1sPwovzbAhUKWX0KHTG2DgMQjRx6BAgBEAU&url=https%3A%2F%2Fwww.dominos.co.in%2Fmenu%2Fveg-pizzas%2Fdouble-cheese-margherita&psig=AOvVaw1ajDTwwvfZVlDt_Dy6fP5E&ust=1530478499680860", new CardAction(ActionTypes.ImBack, "Add", value: "Adding Cheese Margherita"));
+            var attachment2 = Cards.DynamicCardTemplates.getHeroCard("Farmhouse", "", "", "https://www.google.co.in/imgres?imgurl=https%3A%2F%2Fwww.dominos.co.in%2F%2Ffiles%2Fitems%2FFarmhouse.jpg&imgrefurl=https%3A%2F%2Fwww.dominos.co.in%2Fmenu%2Fveg-pizzas%2Ffarm-house&docid=ehA3DSH7XRYw8M&tbnid=6jjqSvEv1VMlDM%3A&vet=10ahUKEwiix7TTo_zbAhVGfH0KHV19DecQMwh6KAAwAA..i&w=267&h=265&bih=635&biw=1366&q=farmhouse%20pizza&ved=0ahUKEwiix7TTo_zbAhVGfH0KHV19DecQMwh6KAAwAA&iact=mrc&uact=8", new CardAction(ActionTypes.ImBack, "Add", value: "Adding Farmhouse"));
+
+            //adding the created hero cards to the list of message attachments 
+            message.Attachments.Add(attachment1);
+            message.Attachments.Add(attachment2);
+
+            //posting the hero cards carousel to the bot 
+            await context.PostAsync(message);
+
+            //function call to handle button click to add a pizza
+            context.Wait(AddPizza);
+
+        }
+
+        public async Task AddPizza(IDialogContext context, IAwaitable<object> result)
+        {
+
         }
     }
 }
+
