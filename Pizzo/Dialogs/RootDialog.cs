@@ -43,7 +43,7 @@ namespace Pizzo.Dialogs
 
         public async Task AddPizza(IDialogContext context, IAwaitable<object> result)
         {
-
+            throw new NotImplementedException();
         }
     }
 }

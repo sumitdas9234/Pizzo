@@ -54,7 +54,6 @@ namespace Pizzo
 
 
                 IConversationUpdateActivity update  = message;
-                IConversationUpdateActivity update = message;
                 var client = new ConnectorClient(new Uri(message.ServiceUrl));
                 if (update.MembersAdded != null && update.MembersAdded.Any())
                 {
