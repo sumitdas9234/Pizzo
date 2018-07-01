@@ -18,7 +18,6 @@ namespace Pizzo.Dialogs
 
         public async Task PizzaOptions(IDialogContext context, IAwaitable<object> result)
         {
-            
             var message = context.MakeMessage();
 
             //setting the layout of the attachments to carousel type
@@ -34,7 +33,6 @@ namespace Pizzo.Dialogs
             //adding the created hero cards to the list of message attachments 
             message.Attachments.Add(attachment1);
             message.Attachments.Add(attachment2);
-
             //posting the hero cards carousel to the bot 
             await context.PostAsync(message);
 
