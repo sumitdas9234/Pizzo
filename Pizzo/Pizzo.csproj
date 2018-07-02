@@ -152,7 +152,6 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Cards\DynamicCardTemplates.cs" />
     <Compile Include="Controllers\MessagesController.cs" />
-    <Compile Include="Dialogs\Card.cs" />
     <Compile Include="Dialogs\RootDialog.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
