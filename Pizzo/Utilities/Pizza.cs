@@ -17,7 +17,7 @@ namespace Pizzo.Utilities
         public string image { get; set; }
     }
 
-    public class RootObject
+    public class MenuItem
     {
         public List<Veg> veg { get; set; }
         public List<Nonveg> nonveg { get; set; }
