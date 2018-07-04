@@ -30,10 +30,9 @@ namespace Pizzo.Dialogs
             JObject data = Utilities.Utilities.LoadJSON("c:\\Users\\Sumit Das\\source\\repos\\Pizzo\\Pizzo\\Resources\\menu.json");
             MenuItem menu = Utilities.Utilities.MapToObject(data);
 
-            //creating hero cards showing pizza options
             //creating a list of message attachments which will be shown in carousel layout
             message.Attachments =  AdaptiveCardDialog.CarouselFromArray(menu.veg);      
-            //posting the hero cards carousel to the bot 
+            //posting the adaptive card carousel to the bot 
             await context.PostAsync(message);
 
             //function call to handle button click to add a pizza

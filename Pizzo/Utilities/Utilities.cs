@@ -43,14 +43,14 @@ namespace Pizzo.Utilities
             //Instansiating MenuItem class
             MenuItem menu = new MenuItem()
             {
-                veg = new List<Veg>(),
-                nonveg = new List<Nonveg>()
+                veg = new List<Pizza>(),
+                nonveg = new List<Pizza>()
             };
             //Retreiving the Veg Menu from the JSON
             foreach(JObject vegItem in vegMenu)
             {
                 //mapping to object
-                Veg item = new Veg()
+                Pizza item = new Pizza()
                 {
                     name = (string)vegItem["name"],
                     desc = (string)vegItem["desc"],
@@ -65,7 +65,7 @@ namespace Pizzo.Utilities
             foreach (JObject nonVegItem in nonVegMenu)
             {
                 //mapping to object
-                Nonveg item = new Nonveg()
+                Pizza item = new Pizza()
                 {
                     name = (string)nonVegItem["name"],
                     desc = (string)nonVegItem["desc"],
