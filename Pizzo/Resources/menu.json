@@ -1,0 +1,61 @@
+﻿{
+  "veg": [
+    {
+      "name": "Delicious Pizza",
+      "desc": "A very delicious pizza made with love",
+      "price": 10,
+      "image": "https://image.freepik.com/free-vector/flat-design-pizza-background_23-2147640743.jpg"
+    },
+    {
+      "name": "Delicious Pizza",
+      "desc": "A very delicious pizza made with love",
+      "price": 10,
+      "image": "https://image.freepik.com/free-vector/flat-design-pizza-background_23-2147640743.jpg"
+    },
+    {
+      "name": "Delicious Pizza",
+      "desc": "A very delicious pizza made with love",
+      "price": 10,
+      "image": "https://image.freepik.com/free-vector/flat-design-pizza-background_23-2147640743.jpg"
+    },
+    {
+      "name": "Delicious Pizza",
+      "desc": "A very delicious pizza made with love",
+      "price": 10,
+      "image": "https://image.freepik.com/free-vector/flat-design-pizza-background_23-2147640743.jpg"
+    },
+    {
+      "name": "Delicious Pizza",
+      "desc": "A very delicious pizza made with love",
+      "price": 10,
+      "image": "https://image.freepik.com/free-vector/flat-design-pizza-background_23-2147640743.jpg"
+    }
+  ],
+  "nonveg": [
+    {
+      "name": "Delicious Pizza",
+      "desc": "A very delicious pizza made with love",
+      "price": 10,
+      "image": "https://image.freepik.com/free-vector/flat-design-pizza-background_23-2147640743.jpg"
+    },
+    {
+      "name": "Delicious Pizza",
+      "desc": "A very delicious pizza made with love",
+      "price": 10,
+      "image": "https://image.freepik.com/free-vector/flat-design-pizza-background_23-2147640743.jpg"
+    },
+    {
+      "name": "Delicious Pizza",
+      "desc": "A very delicious pizza made with love",
+      "price": 10,
+      "image": "https://image.freepik.com/free-vector/flat-design-pizza-background_23-2147640743.jpg"
+    },
+    {
+      "name": "Delicious Pizza",
+      "desc": "A very delicious pizza made with love",
+      "price": 10,
+      "image": "https://image.freepik.com/free-vector/flat-design-pizza-background_23-2147640743.jpg"
+    }
+  ]
+
+}
