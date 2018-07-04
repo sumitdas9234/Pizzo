@@ -4,9 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
-using Newtonsoft.Json.Linq;
 using Pizzo.Cards;
-using Pizzo.Utilities;
 
 namespace Pizzo.Dialogs
 {
@@ -26,13 +24,17 @@ namespace Pizzo.Dialogs
             //setting the layout of the attachments to carousel type
             message.AttachmentLayout = AttachmentLayoutTypes.Carousel;
 
-            //getting the current menu
-            JObject data = Utilities.Utilities.LoadJSON("c:\\Users\\Sumit Das\\source\\repos\\Pizzo\\Pizzo\\Resources\\menu.json");
-            MenuItem menu = Utilities.Utilities.MapToObject(data);
+            //creating a list of message attachments which will be shown in carousel layout
+            message.Attachments = new List<Attachment>();
 
             //creating hero cards showing pizza options
-            //creating a list of message attachments which will be shown in carousel layout
-            message.Attachments =  AdaptiveCardDialog.CarouselFromArray(menu.veg);      
+           
+            var attachment1 = AdaptiveCardDialog.CreateAdaptiveCard();
+            var attachment2 = AdaptiveCardDialog.CreateAdaptiveCard();
+
+            //adding the created Adaptive cards to the list of message attachments 
+            message.Attachments.Add(attachment1);
+            message.Attachments.Add(attachment2);
             //posting the hero cards carousel to the bot 
             await context.PostAsync(message);
 
