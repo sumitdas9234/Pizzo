@@ -52,6 +52,7 @@ namespace Pizzo.Utilities
                 //mapping to object
                 Pizza item = new Pizza()
                 {
+                    id = (string)vegItem["id"],
                     name = (string)vegItem["name"],
                     desc = (string)vegItem["desc"],
                     price = (int)vegItem["price"],
@@ -67,6 +68,7 @@ namespace Pizzo.Utilities
                 //mapping to object
                 Pizza item = new Pizza()
                 {
+                    id = (string)nonVegItem["id"],
                     name = (string)nonVegItem["name"],
                     desc = (string)nonVegItem["desc"],
                     price = (int)nonVegItem["price"],

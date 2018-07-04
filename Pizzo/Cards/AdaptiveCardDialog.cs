@@ -11,7 +11,7 @@ namespace Pizzo.Cards
 {
     public class AdaptiveCardDialog
     {
-        public static Attachment CreateAdaptiveCard(string name, string desc, int price, string photo)
+        public static Attachment CreateAdaptiveCard(string id, string name, string desc, int price, string photo)
         {
             //creating the layout using single column
             var card = new AdaptiveCard();
@@ -54,7 +54,7 @@ namespace Pizzo.Cards
             card.Actions.Add(new SubmitAction()
             {
                 Title = "Add to Cart",
-                Data = name
+                Data = id
             });
 
             //Converting the adaptive card into an attachment
@@ -74,7 +74,7 @@ namespace Pizzo.Cards
         {
             List<Attachment> Carousel = new List<Attachment>();
             foreach (var item in array) {
-                Attachment card = CreateAdaptiveCard(item.name, item.desc, item.price, item.image);
+                Attachment card = CreateAdaptiveCard(item.id, item.name, item.desc, item.price, item.image);
                 Carousel.Add(card);
             }
 
