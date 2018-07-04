@@ -5,27 +5,28 @@ using System.Web;
 using AdaptiveCards;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
+using Pizzo.Utilities;
 
 namespace Pizzo.Cards
 {
     public class AdaptiveCardDialog
     {
-        public static Attachment CreateAdaptiveCard()
+        public static Attachment CreateAdaptiveCard(string name, string desc, int price, string photo)
         {
             //creating the layout using single column
             var card = new AdaptiveCard();
             //adding Image to the body
                 card.Body.Add(new Image()
                   {
-                      Url = "https://image.freepik.com/free-vector/flat-design-pizza-background_23-2147640743.jpg",
+                      Url = photo,
                       Size = ImageSize.Auto,
                       Style = ImageStyle.Normal,
-                      AltText = " Pizza Name"
+                      AltText = name
                   });
             //adding title to the body
             card.Body.Add(new TextBlock()
             {
-                Text = "Pizza Name",
+                Text = name,
                 Weight = TextWeight.Bolder,
                 Size = TextSize.Medium,
                 Color = TextColor.Dark
@@ -34,7 +35,7 @@ namespace Pizzo.Cards
             //Adding the ingredients
             card.Body.Add(new TextBlock()
             {
-                Text = "with some awesome flavours and tasty spices sprinkled on the top.",
+                Text = desc,
                 Weight = TextWeight.Normal,
                 Color = TextColor.Accent,
                 Wrap = true
@@ -43,7 +44,7 @@ namespace Pizzo.Cards
             //Adding the Price
             card.Body.Add(new TextBlock()
             {
-                Text = "Price: $29",
+                Text = "Price: "+price,
                 Size = TextSize.Small,
                 Weight = TextWeight.Bolder,
                 Color = TextColor.Dark
@@ -53,7 +54,7 @@ namespace Pizzo.Cards
             card.Actions.Add(new SubmitAction()
             {
                 Title = "Add to Cart",
-                Data = "Pizza Name"
+                Data = name
             });
 
             //Converting the adaptive card into an attachment
@@ -65,6 +66,20 @@ namespace Pizzo.Cards
                 Content = card
             };
             return attachment;
+        }
+
+
+        //Utility function to create a carousel from an Array of MenuItem.veg or MenuItem.nonveg objects
+        public static List<Attachment> CarouselFromArray(List<Veg> array)
+        {
+            List<Attachment> Carousel = new List<Attachment>();
+            foreach (var item in array) {
+                Attachment card = CreateAdaptiveCard(item.name, item.desc, item.price, item.image);
+                Carousel.Add(card);
+            }
+
+            return Carousel;
+
         }
 
     }
