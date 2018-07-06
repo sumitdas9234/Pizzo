@@ -13,40 +13,40 @@ namespace Pizzo.Dialogs
     [Serializable]
     public class RootDialog : IDialog<object>
     {
+        public enum Choice
+        {
+            Veg,
+            NonVeg
+        }
+
         public Task StartAsync(IDialogContext context)
         {
             context.Wait(PizzaOptions);
             return Task.CompletedTask;
         }
 
-        public async Task PizzaOptions(IDialogContext context, IAwaitable<object> result)
+        public async Task PizzaOptions(IDialogContext context, IAwaitable<IMessageActivity> activity)
         {
-            var message = context.MakeMessage();
+            var message = await activity;
+            PromptDialog.Choice(
+             context: context,
+             resume: ChoiceReceivedAsync,
+             options: (IEnumerable<Choice>)Enum.GetValues(typeof(Choice)),
+             prompt: "Please Select",
+             retry: "There was an error . Please try again.",
+             promptStyle: PromptStyle.Auto,
+             attempts: 1
 
-            //setting the layout of the attachments to carousel type
-            message.AttachmentLayout = AttachmentLayoutTypes.Carousel;
-
-            //getting the current menu
-            JObject data = Utilities.Utilities.LoadJSON("c:\\Users\\Sumit Das\\source\\repos\\Pizzo\\Pizzo\\Resources\\menu.json");
-            MenuItem menu = Utilities.Utilities.MapToObject(data);
-
-            //creating a list of message attachments which will be shown in carousel layout
-            message.Attachments =  AdaptiveCardDialog.CarouselFromArray(menu.veg);      
-            //posting the adaptive card carousel to the bot 
-            await context.PostAsync(message);
-
-            //function call to handle button click to add a pizza
-            context.Wait(AddPizza);
+             );
 
         }
 
 
-
-
-        // Handle the item added and calculate the price
-        public async Task AddPizza(IDialogContext context, IAwaitable<object> result)
+        public async Task ChoiceReceivedAsync(IDialogContext context, IAwaitable<Choice> activity)
         {
-            throw new NotImplementedException();
+            Choice response = await activity;
+            context.Call<object>(new CarouselDialog(response.ToString()), AddonDialog.DisplayAddonPrompt);
+
         }
     }
 }

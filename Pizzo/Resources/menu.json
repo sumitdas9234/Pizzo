@@ -39,21 +39,21 @@
   "nonveg": [
     {
       "id": "N001",
-      "name": "Delicious Pizza",
+      "name": " Non Veg Delicious Pizza",
       "desc": "A very delicious pizza made with love",
       "price": 10,
       "image": "https://image.freepik.com/free-vector/flat-design-pizza-background_23-2147640743.jpg"
     },
     {
       "id": "N002",
-      "name": "Delicious Pizza",
+      "name": "Non Veg Delicious Pizza",
       "desc": "A very delicious pizza made with love",
       "price": 10,
       "image": "https://image.freepik.com/free-vector/flat-design-pizza-background_23-2147640743.jpg"
     },
     {
       "id": "N003",
-      "name": "Delicious Pizza",
+      "name": "Non Veg Delicious Pizza",
       "desc": "A very delicious pizza made with love",
       "price": 10,
       "image": "https://image.freepik.com/free-vector/flat-design-pizza-background_23-2147640743.jpg"
