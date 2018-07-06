@@ -46,6 +46,10 @@ namespace Pizzo.Dialogs
 
         }
 
+
+
+
+        // Handle the item added and calculate the price
         public async Task AddPizza(IDialogContext context, IAwaitable<object> result)
         {
             throw new NotImplementedException();
