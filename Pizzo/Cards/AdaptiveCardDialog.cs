@@ -82,5 +82,18 @@ namespace Pizzo.Cards
 
         }
 
+        public static List<Attachment> AddOnCarouselFromArray(List<AddOn> array)
+        {
+            List<Attachment> Carousel = new List<Attachment>();
+            foreach (var item in array)
+            {
+                Attachment card = CreateAdaptiveCard(item.id, item.name, item.desc, item.price, item.image);
+                Carousel.Add(card);
+            }
+
+            return Carousel;
+
+        }
+
     }
 }

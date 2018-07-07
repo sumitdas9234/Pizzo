@@ -1,0 +1,68 @@
+﻿{
+    {
+      "id": "A001",
+      "name": "Delicious Pizza",
+      "desc": "A very delicious pizza made with love",
+      "price": 10,
+      "image": "https://image.freepik.com/free-vector/flat-design-pizza-background_23-2147640743.jpg"
+    },
+    {
+      "id": "A002",
+      "name": "Delicious Pizza",
+      "desc": "A very delicious pizza made with love",
+      "price": 10,
+      "image": "https://image.freepik.com/free-vector/flat-design-pizza-background_23-2147640743.jpg"
+    },
+    {
+      "id": "A003",
+      "name": "Delicious Pizza",
+      "desc": "A very delicious pizza made with love",
+      "price": 10,
+      "image": "https://image.freepik.com/free-vector/flat-design-pizza-background_23-2147640743.jpg"
+    },
+    {
+      "id": "A004",
+      "name": "Delicious Pizza",
+      "desc": "A very delicious pizza made with love",
+      "price": 10,
+      "image": "https://image.freepik.com/free-vector/flat-design-pizza-background_23-2147640743.jpg"
+    },
+    {
+      "id": "A005",
+      "name": "Delicious Pizza",
+      "desc": "A very delicious pizza made with love",
+      "price": 10,
+      "image": "https://image.freepik.com/free-vector/flat-design-pizza-background_23-2147640743.jpg"
+    }
+  
+    {
+      "id": "A006",
+      "name": " Non Veg Delicious Pizza",
+      "desc": "A very delicious pizza made with love",
+      "price": 10,
+      "image": "https://image.freepik.com/free-vector/flat-design-pizza-background_23-2147640743.jpg"
+    },
+    {
+      "id": "A007",
+      "name": "Non Veg Delicious Pizza",
+      "desc": "A very delicious pizza made with love",
+      "price": 10,
+      "image": "https://image.freepik.com/free-vector/flat-design-pizza-background_23-2147640743.jpg"
+    },
+    {
+      "id": "A008",
+      "name": "Non Veg Delicious Pizza",
+      "desc": "A very delicious pizza made with love",
+      "price": 10,
+      "image": "https://image.freepik.com/free-vector/flat-design-pizza-background_23-2147640743.jpg"
+    },
+    {
+      "id": "A009",
+      "name": "Delicious Pizza",
+      "desc": "A very delicious pizza made with love",
+      "price": 10,
+      "image": "https://image.freepik.com/free-vector/flat-design-pizza-background_23-2147640743.jpg"
+    }
+
+}
+

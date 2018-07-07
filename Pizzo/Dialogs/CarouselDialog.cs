@@ -28,7 +28,7 @@ namespace Pizzo.Dialogs
             message.AttachmentLayout = AttachmentLayoutTypes.Carousel;
 
             //getting the current menu
-            JObject data = Utilities.Utilities.LoadJSON("c:\\Users\\Sumit Das\\source\\repos\\Pizzo\\Pizzo\\Resources\\menu.json");
+            JObject data = Utilities.Utilities.LoadJSON("C:\\Users\\HP\\Desktop\\sonali\\BotFramework\\PizzoNew\\Pizzo\\Pizzo\\Resources\\menu.json");
             MenuItem menu = Utilities.Utilities.MapToObject(data);
 
             //getting the users choice
@@ -41,12 +41,8 @@ namespace Pizzo.Dialogs
             await context.PostAsync(message);
 
             //function call to handle button click to add a pizza
-            context.Wait(AddPizza);
+            context.Done(context.Activity);
         }
 
-        private Task AddPizza(IDialogContext context, IAwaitable<object> result)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

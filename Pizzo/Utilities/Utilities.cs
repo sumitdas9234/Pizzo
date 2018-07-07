@@ -79,5 +79,34 @@ namespace Pizzo.Utilities
             }
             return menu;
         }
+
+        public static AddOnMenuItem AddOnMapToObject(JObject data)
+        {
+            //retreiving the list of items in veg and non-veg menu   
+            JArray vegMenu = (JArray)data["veg"];
+            //JArray nonVegMenu = (JArray)data["nonveg"];
+            //Instansiating MenuItem class
+            AddOnMenuItem menu = new AddOnMenuItem()
+            {
+                veg = new List<AddOn>(),
+                
+            };
+            //Retreiving the Veg Menu from the JSON
+            foreach (JObject vegItem in vegMenu)
+            {
+                //mapping to object
+                AddOn item = new AddOn()
+                {
+                    id = (string)vegItem["id"],
+                    name = (string)vegItem["name"],
+                    desc = (string)vegItem["desc"],
+                    price = (int)vegItem["price"],
+                    image = (string)vegItem["image"]
+                };
+                //Adding to the list
+                menu.veg.Add(item);
+            }
+            return menu;
+        }
     }
 }

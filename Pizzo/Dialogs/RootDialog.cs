@@ -45,8 +45,20 @@ namespace Pizzo.Dialogs
         public async Task ChoiceReceivedAsync(IDialogContext context, IAwaitable<Choice> activity)
         {
             Choice response = await activity;
-            context.Call<object>(new CarouselDialog(response.ToString()), AddonDialog.DisplayAddonPrompt);
+            context.Call<object>(new CarouselDialog(response.ToString()), this.DisplayAddonPrompt);
 
+        }
+
+        private async Task DisplayAddonPrompt(IDialogContext context, IAwaitable<object> result)
+        {
+            await context.PostAsync("Enter yes");
+            context.Call<object>(new AddonDialog(), this.ResumeAfterAddOn);
+
+        }
+
+        private Task ResumeAfterAddOn(IDialogContext context, IAwaitable<object> result)
+        {
+            throw new NotImplementedException();
         }
     }
 }
