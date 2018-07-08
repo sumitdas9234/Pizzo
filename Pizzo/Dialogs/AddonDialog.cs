@@ -11,28 +11,35 @@ using Pizzo.Cards;
 namespace Pizzo.Dialogs
 {
     public class AddonDialog : IDialog<object>
+
     {
+
+        string choice;
+        public AddonDialog(string option)
+        {
+            choice = option;
+        }
+
         public async Task StartAsync(IDialogContext context)
         {
+            context.PostAsync("Ready to add some toppings?");
             
-                var message = context.MakeMessage();
-                JObject data = Utilities.Utilities.LoadJSON("C:\\Users\\HP\\Desktop\\sonali\\BotFramework\\PizzoNew\\Pizzo\\Pizzo\\Resources\\addons.json");
-                AddOnMenuItem menu = Utilities.Utilities.AddOnMapToObject(data);
-                List<AddOn> userChoice = menu.veg;
+            var message = context.MakeMessage();
+            List<AddOn> userChoice;
+            JObject data = Utilities.Utilities.LoadJSON("C:\\Users\\HP\\Desktop\\sonali\\BotFramework\\PizzoNew\\Pizzo\\Pizzo\\Resources\\addons.json");
+            AddOnMenuItem menu = Utilities.Utilities.AddOnMapToObject(data);
+            if (choice.ToLower() == "yes")
+            {
+                userChoice = menu.veg;
+
                 message.Attachments = AdaptiveCardDialog.AddOnCarouselFromArray(userChoice);
-                //posting the adaptive card carousel to the bot 
-                await context.PostAsync(message);
-
-                //function call to handle button click to add a pizza
-                context.Wait(AddPizza);
-           
-
-
+            }
+            //posting the adaptive card carousel to the bot 
+            await context.PostAsync(message);
+            context.Done(this);
         }
 
-        private Task AddPizza(IDialogContext context, IAwaitable<object> result)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }
+    

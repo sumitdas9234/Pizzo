@@ -51,14 +51,15 @@ namespace Pizzo.Dialogs
 
         private async Task DisplayAddonPrompt(IDialogContext context, IAwaitable<object> result)
         {
-            await context.PostAsync("Enter yes");
-            context.Call<object>(new AddonDialog(), this.ResumeAfterAddOn);
+            var response = await result;
+            await context.PostAsync("Enter yes to add toppings");
+            context.Call<object>(new AddonDialog(response.ToString()), this.ResumeAfterAddOn);
 
         }
 
-        private Task ResumeAfterAddOn(IDialogContext context, IAwaitable<object> result)
+        private async Task ResumeAfterAddOn(IDialogContext context, IAwaitable<object> result)
         {
-            throw new NotImplementedException();
+            await context.PostAsync("resume after add on");
         }
     }
 }
