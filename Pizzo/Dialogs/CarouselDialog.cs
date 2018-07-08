@@ -43,10 +43,18 @@ namespace Pizzo.Dialogs
             //function call to handle button click to add a pizza
             context.Wait(AddPizza);
         }
-
-        private Task AddPizza(IDialogContext context, IAwaitable<object> result)
+        private async Task AddPizza(IDialogContext context, IAwaitable<IMessageActivity> argument)
         {
-            throw new NotImplementedException();
+            // Store the value that NewOrderDialog returned. 
+            // (At this point, new order dialog has finished and returned some value to use within the root dialog.)
+            var resultFromNewOrder = await argument;
+
+            await context.PostAsync($"New order dialog just told me this: {resultFromNewOrder.Text}");
+
+            // Again, wait for the next message from the user.
+            context.Done(this);
         }
+
     }
+
 }

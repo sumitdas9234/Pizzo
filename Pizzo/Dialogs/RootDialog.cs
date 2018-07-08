@@ -45,9 +45,11 @@ namespace Pizzo.Dialogs
         public async Task ChoiceReceivedAsync(IDialogContext context, IAwaitable<Choice> activity)
         {
             Choice response = await activity;
-            context.Call<object>(new CarouselDialog(response.ToString()), AddonDialog.DisplayAddonPrompt);
+            context.Call(new CarouselDialog(response.ToString()), AddonDialog.DisplayAddonPrompt);
 
         }
+
+
     }
 }
 
