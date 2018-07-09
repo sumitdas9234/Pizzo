@@ -13,6 +13,26 @@ namespace Pizzo.Dialogs
     [Serializable]
     public class RootDialog : IDialog<object>
     {
+        //calculating total price
+        public int Payment(Pizza item)
+        {
+            int total = 0;
+            total = total + item.price;
+            return total;
+        }
+
+        private async Task MessageReceivedAsync(IDialogContext context,IAwaitable<IMessageActivity> result)
+        {
+            var message = await result;
+            if (message.Value != null)
+            {
+                dynamic value = message.Value;
+                string submitType = value.Type.ToString();
+                //calling the function
+                   //Payment(MenuItem);
+            }
+        }
+
         public enum Choice
         {
             Veg,

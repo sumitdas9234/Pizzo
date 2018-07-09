@@ -28,7 +28,7 @@ namespace Pizzo.Dialogs
             message.AttachmentLayout = AttachmentLayoutTypes.Carousel;
 
             //getting the current menu
-            JObject data = Utilities.Utilities.LoadJSON("C:\\Users\\HP\\Desktop\\sonali\\BotFramework\\PizzoNew\\Pizzo\\Pizzo\\Resources\\menu.json");
+            JObject data = Utilities.Utilities.LoadJSON("C:\\Users\\Arzeena Khan\\source\\repos\\Pizzo\\Pizzo\\Resources\\menu.json");
             MenuItem menu = Utilities.Utilities.MapToObject(data);
 
             //getting the users choice

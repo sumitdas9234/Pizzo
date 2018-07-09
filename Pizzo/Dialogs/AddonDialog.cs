@@ -26,7 +26,7 @@ namespace Pizzo.Dialogs
             
             var message = context.MakeMessage();
             List<AddOn> userChoice;
-            JObject data = Utilities.Utilities.LoadJSON("C:\\Users\\HP\\Desktop\\sonali\\BotFramework\\PizzoNew\\Pizzo\\Pizzo\\Resources\\addons.json");
+            JObject data = Utilities.Utilities.LoadJSON("C:\\Users\\Arzeena Khan\\source\\repos\\Pizzo\\Pizzo\\Resources\\addons.json");
             AddOnMenuItem menu = Utilities.Utilities.AddOnMapToObject(data);
             if (choice.ToLower() == "yes")
             {

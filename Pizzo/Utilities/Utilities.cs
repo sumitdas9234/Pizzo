@@ -108,5 +108,13 @@ namespace Pizzo.Utilities
             }
             return menu;
         }
+
+        public int Payment(Pizza item)
+        {
+            int total = 0;
+            total = total + item.price;
+            return total;
+        }
+
     }
 }
