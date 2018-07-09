@@ -45,7 +45,7 @@ namespace Pizzo.Dialogs
         }
         private async Task AddPizza(IDialogContext context, IAwaitable<IMessageActivity> argument)
         {
-            // Store the value that NewOrderDialog returned. 
+            // Store the value that AddToCart Menu returned. 
             // (At this point, new order dialog has finished and returned some value to use within the root dialog.)
             var resultFromNewOrder = await argument;
 

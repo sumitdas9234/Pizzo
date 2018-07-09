@@ -51,8 +51,12 @@ namespace Pizzo.Cards
             });
 
             //Adding the Add to cart button
-            card.Actions.Add(new 
-            );
+            card.Actions.Add(new SubmitAction()
+            {
+                Title = "Add to Cart",
+                Data = id
+            });
+
 
             //Converting the adaptive card into an attachment
             Attachment attachment = new Attachment()
