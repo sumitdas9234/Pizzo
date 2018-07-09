@@ -157,6 +157,7 @@
     <Compile Include="Cards\AdaptiveCardDialog.cs" />
     <Compile Include="Cards\DynamicCardTemplates.cs" />
     <Compile Include="Controllers\MessagesController.cs" />
+    <Compile Include="Dialogs\AddonCarouselDialog.cs" />
     <Compile Include="Dialogs\AddonDialog.cs" />
     <Compile Include="Dialogs\CarouselDialog.cs" />
     <Compile Include="Dialogs\RootDialog.cs" />

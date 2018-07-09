@@ -45,11 +45,23 @@ namespace Pizzo.Dialogs
         public async Task ChoiceReceivedAsync(IDialogContext context, IAwaitable<Choice> activity)
         {
             Choice response = await activity;
-            context.Call(new CarouselDialog(response.ToString()), AddonDialog.DisplayAddonPrompt);
+            context.Call(new CarouselDialog(response.ToString()), DisplayAddonPrompt);
 
         }
 
+        public static Task DisplayAddonPrompt(IDialogContext context, IAwaitable<object> result)
+        {
+            var response = result.ToString();
+            context.Call(new AddonDialog(), OrderCompletedMessage);
+            return Task.CompletedTask;
+        }
 
+        public static Task OrderCompletedMessage(IDialogContext context, IAwaitable<object> result)
+        {
+            var response = result.ToString();
+            context.PostAsync("Done!");
+            return Task.CompletedTask;
+        }
     }
 }
 

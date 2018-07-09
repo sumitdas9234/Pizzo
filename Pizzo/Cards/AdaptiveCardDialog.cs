@@ -54,7 +54,7 @@ namespace Pizzo.Cards
             card.Actions.Add(new SubmitAction()
             {
                 Title = "Add to Cart",
-                Data = id
+                Data =  name
             });
 
 
