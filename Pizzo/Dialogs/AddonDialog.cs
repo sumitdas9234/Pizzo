@@ -59,7 +59,7 @@ namespace Pizzo.Dialogs
             {
                 case "Yes":
                     //[TODO 1]context.Call to the show addonCarousel()
-                    context.Call(new CarouselDialog("veg"), ResumeAfterOptionDialog);
+                    context.Call(new NewOrderDialog(), ResumeAfterOptionDialog);
                     break;
                 //[TODO 2]forward to add more items
                 case "No":
