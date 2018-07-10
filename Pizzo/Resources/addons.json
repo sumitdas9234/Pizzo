@@ -1,0 +1,69 @@
+﻿{
+  "addons": [
+    {
+      "id": "A001",
+      "name": "Delicious Addon",
+      "desc": "A very delicious addon made with love",
+      "price": 10,
+      "image": "https://www.spennymoor-pizza.co.uk/images/source/ck.jpg"
+    },
+    {
+      "id": "A002",
+      "name": "Delicious Addon",
+      "desc": "A very delicious addon made with love",
+      "price": 10,
+      "image": "https://www.spennymoor-pizza.co.uk/images/source/ck.jpg"
+    },
+    {
+      "id": "A003",
+      "name": "Delicious Addon",
+      "desc": "A very delicious addon made with love",
+      "price": 10,
+      "image": "https://www.spennymoor-pizza.co.uk/images/source/ck.jpg"
+    },
+    {
+      "id": "A004",
+      "name": "Delicious Addon",
+      "desc": "A very delicious addon made with love",
+      "price": 10,
+      "image": "https://www.spennymoor-pizza.co.uk/images/source/ck.jpg"
+    },
+    {
+      "id": "A005",
+      "name": "Delicious Addon",
+      "desc": "A very delicious addon made with love",
+      "price": 10,
+      "image": "https://www.spennymoor-pizza.co.uk/images/source/ck.jpg"
+    },
+
+    {
+      "id": "A006",
+      "name": " Non Veg Delicious Addon",
+      "desc": "A very delicious addon made with love",
+      "price": 10,
+      "image": "https://www.spennymoor-pizza.co.uk/images/source/ck.jpg"
+    },
+    {
+      "id": "A007",
+      "name": "Non Veg Delicious Addon",
+      "desc": "A very delicious addon made with love",
+      "price": 10,
+      "image": "https://www.spennymoor-pizza.co.uk/images/source/ck.jpg"
+    },
+    {
+      "id": "A008",
+      "name": "Non Veg Delicious Addon",
+      "desc": "A very delicious addon made with love",
+      "price": 10,
+      "image": "https://www.spennymoor-pizza.co.uk/images/source/ck.jpg"
+    },
+    {
+      "id": "A009",
+      "name": "Delicious Addon",
+      "desc": "A very delicious addon made with love",
+      "price": 10,
+      "image": "https://www.spennymoor-pizza.co.uk/images/source/ck.jpg"
+    }
+  ]
+}
+

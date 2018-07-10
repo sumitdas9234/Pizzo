@@ -35,7 +35,7 @@ namespace Pizzo.Utilities
         }
 
         //Map a JSONs Object to C# Object
-        public static MenuItem MapToObject(JObject data)
+        public static MenuItem MapToPizzaObject(JObject data)
         {
          //retreiving the list of items in veg and non-veg menu   
             JArray vegMenu = (JArray)data["veg"];
@@ -76,6 +76,35 @@ namespace Pizzo.Utilities
                 };
                 //Adding to the list
                 menu.nonveg.Add(item);
+            }
+            return menu;
+        }
+
+
+
+        public static AddonItems MapToAddonObject(JObject data)
+        {
+            //retreiving the list of items in addons
+            JArray addons = (JArray)data["addons"];
+            //Instansiating AddonItems class
+            AddonItems menu = new AddonItems()
+            {
+                addons = new List<Addon>()
+            };
+            //Retreiving the Menu from the JSON
+            foreach (JObject addon in addons)
+            {
+                //mapping to object
+                Addon item = new Addon()
+                {
+                    id = (string)addon["id"],
+                    name = (string)addon["name"],
+                    desc = (string)addon["desc"],
+                    price = (int)addon["price"],
+                    image = (string)addon["image"]
+                };
+                //Adding to the list
+                menu.addons.Add(item);
             }
             return menu;
         }

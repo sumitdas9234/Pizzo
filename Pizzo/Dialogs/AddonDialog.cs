@@ -33,18 +33,41 @@ namespace Pizzo.Dialogs
             {
                 case "Yes":
                     //[TODO 1]context.Call to the show addonCarousel()
-                    await context.PostAsync("Yes");
+                    context.Call(new AddonCarouselDialog(), ResumeAfterOptionDialog);
                     break;
                     //[TODO 2]forward to add more items
                 case "No":
-                    await context.PostAsync("No");
+                    context.Wait(ResumeAfterOptionDialog);
                     break;
             }
-
-            //remove when TODO 1 and TODO 2 are done
-
-            context.Wait(MessageRecievedAsync);
         }
+
+        private Task ResumeAfterOptionDialog(IDialogContext context, IAwaitable<object> result)
+        {
+            //context.PostAsync("Do you want to add more items to your cart?");
+            //context.Wait(this.ResumeAfterOptionDialog);
+
+            PromptDialog.Choice(context, this.AddOtherOrder, new List<string>() { "Yes", "No" }, "Do you want to add more items to your cart?");
+            return Task.CompletedTask;
+        }
+
+        //After users select option, Bot call other dialogs
+        private async Task AddOtherOrder(IDialogContext context, IAwaitable<string> result)
+        {
+            var optionSelected = await result;
+            switch (optionSelected)
+            {
+                case "Yes":
+                    //[TODO 1]context.Call to the show addonCarousel()
+                    context.Call(new CarouselDialog("veg"), ResumeAfterOptionDialog);
+                    break;
+                //[TODO 2]forward to add more items
+                case "No":
+                    context.Wait(ResumeAfterOptionDialog);
+                    break;
+            }
+        }
+
     }
 
 

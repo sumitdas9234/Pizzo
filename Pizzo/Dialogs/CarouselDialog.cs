@@ -29,14 +29,14 @@ namespace Pizzo.Dialogs
 
             //getting the current menu
             JObject data = Utilities.Utilities.LoadJSON("c:\\Users\\Sumit Das\\source\\repos\\Pizzo\\Pizzo\\Resources\\menu.json");
-            MenuItem menu = Utilities.Utilities.MapToObject(data);
+            MenuItem menu = Utilities.Utilities.MapToPizzaObject(data);
 
             //getting the users choice
             List<Pizza> userChoice = (choice.ToLower() == "veg") ? menu.veg : menu.nonveg;
 
 
             //creating a list of message attachments which will be shown in carousel layout
-            message.Attachments = AdaptiveCardDialog.CarouselFromArray(userChoice);
+            message.Attachments = AdaptiveCardDialog.CarouselFromPizzaArray(userChoice);
             //posting the adaptive card carousel to the bot 
             await context.PostAsync(message);
 

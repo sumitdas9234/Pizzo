@@ -71,10 +71,25 @@ namespace Pizzo.Cards
 
 
         //Utility function to create a carousel from an Array of MenuItem.veg or MenuItem.nonveg objects
-        public static List<Attachment> CarouselFromArray(List<Pizza> array)
+        public static List<Attachment> CarouselFromPizzaArray(List<Pizza> array)
         {
             List<Attachment> Carousel = new List<Attachment>();
             foreach (var item in array) {
+                Attachment card = CreateAdaptiveCard(item.id, item.name, item.desc, item.price, item.image);
+                Carousel.Add(card);
+            }
+
+            return Carousel;
+
+        }
+
+
+        //Utility function to create a carousel from an Array of Addon objects
+        public static List<Attachment> CarouselFromAddonArray(List<Addon> array)
+        {
+            List<Attachment> Carousel = new List<Attachment>();
+            foreach (var item in array)
+            {
                 Attachment card = CreateAdaptiveCard(item.id, item.name, item.desc, item.price, item.image);
                 Carousel.Add(card);
             }
