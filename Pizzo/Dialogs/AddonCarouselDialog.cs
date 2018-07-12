@@ -23,7 +23,7 @@ namespace Pizzo.Dialogs
             message.AttachmentLayout = AttachmentLayoutTypes.Carousel;
 
             //getting the current menu
-            JObject data = Utilities.Utilities.LoadJSON("c:\\Users\\Sumit Das\\source\\repos\\Pizzo\\Pizzo\\Resources\\addons.json");
+            JObject data = Utilities.Utilities.LoadJSON("C:\\Users\\HP\\Desktop\\sonali\\BotFramework\\Pizzo\\Pizzo\\Resources\\addons.json");
             AddonItems menu = Utilities.Utilities.MapToAddonObject(data);
             //creating a list of message attachments which will be shown in carousel layout
             message.Attachments = AdaptiveCardDialog.CarouselFromAddonArray(menu.addons);

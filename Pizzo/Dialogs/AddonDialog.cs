@@ -37,7 +37,8 @@ namespace Pizzo.Dialogs
                     break;
                     //[TODO 2]forward to add more items
                 case "No":
-                    context.Wait(ResumeAfterOptionDialog);
+                    PromptDialog.Choice(context, this.AddOtherOrder, new List<string>() { "Yes", "No" }, "Do you want to add more items to your cart?");
+                    //context.Wait(ResumeAfterOptionDialog);
                     break;
             }
         }
@@ -63,7 +64,11 @@ namespace Pizzo.Dialogs
                     break;
                 //[TODO 2]forward to add more items
                 case "No":
-                    context.Wait(ResumeAfterOptionDialog);
+                    {
+                        context.PostAsync("Thank you for ordering with us. Your order has been recorded.");
+                        context.Done(this);
+                    }
+                    //context.Wait(ResumeAfterOptionDialog);
                     break;
             }
         }
