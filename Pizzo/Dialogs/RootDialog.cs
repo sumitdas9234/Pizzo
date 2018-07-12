@@ -59,7 +59,8 @@ namespace Pizzo.Dialogs
         public static Task OrderCompletedMessage(IDialogContext context, IAwaitable<object> result)
         {
             var response = result.ToString();
-            context.PostAsync("Done!");
+            context.PostAsync("Thank You for ordering with us. Your order has been recorded");
+            context.EndConversation("End");
             return Task.CompletedTask;
         }
     }

@@ -43,6 +43,8 @@ namespace Pizzo.Dialogs
             }
         }
 
+       
+
         private Task ResumeAfterOptionDialog(IDialogContext context, IAwaitable<object> result)
         {
             //context.PostAsync("Do you want to add more items to your cart?");
@@ -65,12 +67,13 @@ namespace Pizzo.Dialogs
                 //[TODO 2]forward to add more items
                 case "No":
                     {
-                        context.PostAsync("Thank you for ordering with us. Your order has been recorded.");
-                        context.Done(this);
-                    }
-                    //context.Wait(ResumeAfterOptionDialog);
-                    break;
+                        RootDialog.OrderCompletedMessage(context, result);
+                        break;
+                        
+                    }      
             }
+
+           
         }
 
     }

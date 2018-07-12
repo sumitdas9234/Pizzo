@@ -1,0 +1,15 @@
+{
+    "name": "PizzoFinal1",
+    "description": "",
+    "secretKey": "",
+    "services": [
+        {
+            "appId": "",
+            "id": "6bf9d920-85ae-11e8-bdf9-0f56d4aa547e",
+            "type": "endpoint",
+            "appPassword": "",
+            "endpoint": "http://localhost:3978/api/messages",
+            "name": "http://localhost:3978/api/messages"
+        }
+    ]
+}
