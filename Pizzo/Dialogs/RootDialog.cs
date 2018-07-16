@@ -13,6 +13,8 @@ namespace Pizzo.Dialogs
     [Serializable]
     public class RootDialog : IDialog<object>
     {
+        public static List<Order> orders = new List<Order>();
+    
         public enum Choice
         {
             Veg,
@@ -21,6 +23,7 @@ namespace Pizzo.Dialogs
 
         public Task StartAsync(IDialogContext context)
         {
+            context.PrivateConversationData.SetValue<string>("PizzaItem", "");
             context.Wait(PizzaOptions);
             return Task.CompletedTask;
         }
@@ -51,16 +54,28 @@ namespace Pizzo.Dialogs
 
         public static Task DisplayAddonPrompt(IDialogContext context, IAwaitable<object> result)
         {
-            var response = result.ToString();
+            Order item = new Order()
+            {
+                name = context.PrivateConversationData.GetValue<string>("PizzaItem"),
+                price = 10,
+                quantity = 1
+            };
+            orders.Add(item);
             context.Call(new AddonDialog(), OrderCompletedMessage);
             return Task.CompletedTask;
         }
 
-        public static Task OrderCompletedMessage(IDialogContext context, IAwaitable<object> result)
+        public static async Task OrderCompletedMessage(IDialogContext context, IAwaitable<object> result)
         {
-            var response = result.ToString();
-            context.PostAsync("Thank You for ordering with us. Your order has been recorded");
-            context.EndConversation("End");
+            var response = await result;
+            context.Done("Done!");
+            
+        }
+
+
+        public static Task EndConversation(IDialogContext context, IAwaitable<object> result)
+        { 
+            context.PostAsync("Done!");
             return Task.CompletedTask;
         }
     }

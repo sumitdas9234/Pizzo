@@ -67,7 +67,7 @@ namespace Pizzo.Dialogs
                 //[TODO 2]forward to add more items
                 case "No":
                     {
-                        RootDialog.OrderCompletedMessage(context, result);
+                        context.Call(new OrderSummaryDialog(), RootDialog.EndConversation);
                         break;
                         
                     }      

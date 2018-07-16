@@ -20,5 +20,7 @@ namespace Pizzo.Utilities
             public List<Pizza> veg { get; set; }
             public List<Pizza> nonveg { get; set; }
         }
+
+
     
 }
