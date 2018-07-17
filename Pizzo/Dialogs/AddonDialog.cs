@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Web;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
+using Pizzo.Utilities;
 
 namespace Pizzo.Dialogs
 {
@@ -49,7 +50,15 @@ namespace Pizzo.Dialogs
         {
             //context.PostAsync("Do you want to add more items to your cart?");
             //context.Wait(this.ResumeAfterOptionDialog);
+            Order item = new Order()
+            {
+                name = context.PrivateConversationData.GetValue<string>("AddOnItem"),
+                price = 10,
+                quantity = 1
+            };
 
+            RootDialog.addonorders.Add(item);
+           
             PromptDialog.Choice(context, this.AddOtherOrder, new List<string>() { "Yes", "No" }, "Do you want to add more items to your cart?");
             return Task.CompletedTask;
         }
@@ -61,7 +70,7 @@ namespace Pizzo.Dialogs
             switch (optionSelected)
             {
                 case "Yes":
-                    //[TODO 1]context.Call to the show addonCarousel()
+                   //[TODO 1]context.Call to the show addonCarousel()
                     context.Call(new NewOrderDialog(), ResumeAfterOptionDialog);
                     break;
                 //[TODO 2]forward to add more items

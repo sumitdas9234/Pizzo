@@ -1,6 +1,7 @@
 ﻿using AdaptiveCards;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
+using Pizzo.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,18 @@ namespace Pizzo.Dialogs
     public class OrderSummaryDialog : IDialog<object>
     {
         public async Task StartAsync(IDialogContext context)
-        {
+        {    
+            
+            //Display ordered pizza summary
+            string pizzasummary = "You ordered: ";
+            foreach (Order pz in RootDialog.orders)
+                pizzasummary += pz.name + ", ";
+            
+            //Display ordered add on summary
+            string addonsummary = " And your add ons are: ";
+            foreach (Order addon in RootDialog.addonorders)
+                addonsummary += addon.name + ", ";
+            
             var card = new AdaptiveCard();
             card.Body.Add(new TextBlock()
             {
@@ -30,6 +42,23 @@ namespace Pizzo.Dialogs
                 Size = TextSize.Normal,
                 Color = TextColor.Attention
             });
+
+            
+            card.Body.Add(new TextBlock() {
+                    Text = pizzasummary,
+                    Weight = TextWeight.Normal,
+                    Size = TextSize.Small,
+                    Color = TextColor.Light
+            });
+
+            card.Body.Add(new TextBlock()
+            {
+                Text = addonsummary,
+                Weight = TextWeight.Normal,
+                Size = TextSize.Small,
+                Color = TextColor.Light
+            });
+
             card.Actions.Add(new SubmitAction()
             {
                 Title = "Checkout",
@@ -69,8 +98,9 @@ namespace Pizzo.Dialogs
 
         private Task HandleResponse(IDialogContext context, IAwaitable<object> result)
         {
+             
              context.EndConversation("Your Order has been sucessfully placed!");
-            return Task.CompletedTask;
+             return Task.CompletedTask;
         }
     }
 }

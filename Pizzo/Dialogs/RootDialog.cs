@@ -14,7 +14,8 @@ namespace Pizzo.Dialogs
     public class RootDialog : IDialog<object>
     {
         public static List<Order> orders = new List<Order>();
-    
+        public static List<Order> addonorders = new List<Order>();
+
         public enum Choice
         {
             Veg,
@@ -24,6 +25,7 @@ namespace Pizzo.Dialogs
         public Task StartAsync(IDialogContext context)
         {
             context.PrivateConversationData.SetValue<string>("PizzaItem", "");
+            context.PrivateConversationData.SetValue<string>("AddOnItem", "");
             context.Wait(PizzaOptions);
             return Task.CompletedTask;
         }

@@ -1,0 +1,15 @@
+{
+    "name": "OrderSummary",
+    "description": "",
+    "secretKey": "",
+    "services": [
+        {
+            "appId": "",
+            "id": "cc9a85c0-88e4-11e8-8be0-dd4ca009bb02",
+            "type": "endpoint",
+            "appPassword": "",
+            "endpoint": "http://localhost:3978/api/messages",
+            "name": "http://localhost:3978/api/messages"
+        }
+    ]
+}
