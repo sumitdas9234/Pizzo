@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Web;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
+using Pizzo.Utilities;
 
 namespace Pizzo.Dialogs
 {
@@ -44,6 +45,13 @@ namespace Pizzo.Dialogs
 
         private Task ResumeAfterOptionDialog(IDialogContext context, IAwaitable<object> result)
         {
+            Order item = new Order()
+            {
+                name = context.PrivateConversationData.GetValue<string>("PizzaItem"),
+                price = 10,
+                quantity = 1
+            };
+            RootDialog.orders.Add(item);
             context.Call(new AddonDialog(), ResumeAfterOptionDialog);
             return Task.CompletedTask;
         }
